@@ -1,0 +1,28 @@
+DTMF-Decoder library.
+
+Single include file DTMF decoding library for x86 computers.
+
+This librarey provides stable and dependable DTMF detection for embedded applications.  Requires c++71+.
+
+Features:
+    - Sensitivity: -27dB
+    - Min SnR ratio 3dB
+    -Tailored for compatibility with ITU Q.24 Specification (https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-Q.24-198811-I!!PDF-E&type=items)
+    - High troughput, lazy algorithm for minimal CPU usage.
+    - AVX2, FMA3, SSE4.1 and SSE2 hardware acceleration, selectable at compile-time.
+    - Code does not allocate memory, and does not raise exceptions.
+    - Small memory footprint (768 bytes per channel).
+    - OS agnostic.
+
+Directory structure:
+
+    + benchmark             Benchmarks
+    + documentation         Doxygen documentation make files
+    + src                   The library
+    + test                  Unit testing files
+    + testlib               DTMF generator used for unit testing
+
+License:
+
+    MIT Licence.  Free to usee in commercial projects.
+

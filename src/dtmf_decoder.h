@@ -301,7 +301,7 @@ inline void pcm_to_float(const int16_t* src, size_t count, float* dst) noexcept
 	}
 
 #else
-	std::transform(src, src + count, dst, [](int16_t s) noexcept -> float { return s * SCALING_FACTOR; });
+	std::transform(src, src + count, dst, [&](int16_t s) noexcept -> float { return s * SCALING_FACTOR; });
 #endif
 }
 

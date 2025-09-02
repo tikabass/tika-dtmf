@@ -26,7 +26,7 @@ include(GoogleBenchmark.cmake)
 
 # ******************************************************************************
 
-set(CMAKE_CXX_STANDARD          17)
+set(CMAKE_CXX_STANDARD          20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS        OFF)
 set(CMAKE_DEBUG_POSTFIX         "d")
@@ -40,10 +40,10 @@ if(${CMAKE_HOST_LINUX})
     set (DTMF_CXX_AVX2_FLAG -mavx2)
     set (DTMF_CXX_FMA3_FLAG -mfma)
 else()
-    set (DTMF_CXX_SSE2_FLAG /arch:SSE2)
-    set (DTMF_CXX_SSE41_FLAG /arch:SSE4.1)
-    set (DTMF_CXX_AVX2_FLAG /arch:AVX2)
-    set (DTMF_CXX_FMA3_FLAG /arch:FMA)
+    set(DTMF_CXX_SSE2_FLAG "")
+    set(DTMF_CXX_SSE41_FLAG "")
+    set(DTMF_CXX_AVX2_FLAG /arch:AVX2)
+    set(DTMF_CXX_FMA3_FLAG /arch:AVX2)
 endif()
 
 # ******************************************************************************

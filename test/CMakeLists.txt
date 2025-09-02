@@ -22,6 +22,7 @@
 # SOFTWARE.
 # ******************************************************************************
 
+include(GoogleTest.cmake)
 include(GoogleTest)
 
 # ******************************************************************************
@@ -40,10 +41,10 @@ if(${CMAKE_HOST_LINUX})
     set(DTMF_CXX_AVX2_FLAG -mavx2)
     set(DTMF_CXX_FMA3_FLAG -mfma)
 else()    
-    set(DTMF_CXX_SSE2_FLAG /arch:SSE2)
-    set(DTMF_CXX_SSE41_FLAG /arch:SSE4.1)
+    set(DTMF_CXX_SSE2_FLAG "")
+    set(DTMF_CXX_SSE41_FLAG "")
     set(DTMF_CXX_AVX2_FLAG /arch:AVX2)
-    set(DTMF_CXX_FMA3_FLAG /arch:FMA)
+    set(DTMF_CXX_FMA3_FLAG /arch:AVX2)
 endif()
 
 # ******************************************************************************
@@ -53,7 +54,7 @@ set(DTMF_TEST_SOURCE_FILES
 )
 
 set(DTMF_TEST_INCLUDE_DIRS
-    "${gtest_SOURCE_DIR}" 
+    "${googletest_SOURCE_DIR}" 
     "${CMAKE_SOURCE_DIR}/src"
     "${CMAKE_SOURCE_DIR}/testlib"
 )
@@ -73,7 +74,7 @@ target_compile_options(dtmf_test_avx2
 )
 
 target_include_directories(dtmf_test_avx2   PRIVATE ${DTMF_TEST_INCLUDE_DIRS})
-target_link_directories(dtmf_test_avx2      PRIVATE ${gtest_BINARY_DIR})
+target_link_directories(dtmf_test_avx2      PRIVATE ${googletest_BINARY_DIR})
 target_link_libraries(dtmf_test_avx2        PRIVATE ${DTMF_TEST_LINK_LIBRARIES})
 
 # ******************************************************************************
@@ -89,7 +90,7 @@ target_compile_options(dtmf_test_fma3
 )
 
 target_include_directories(dtmf_test_fma3   PRIVATE ${DTMF_TEST_INCLUDE_DIRS})
-target_link_directories(dtmf_test_fma3      PRIVATE ${gtest_BINARY_DIR})
+target_link_directories(dtmf_test_fma3      PRIVATE ${googletest_BINARY_DIR})
 target_link_libraries(dtmf_test_fma3        PRIVATE ${DTMF_TEST_LINK_LIBRARIES})
 
 # ******************************************************************************
@@ -104,7 +105,7 @@ target_compile_options(dtmf_test_sse41
 )
 
 target_include_directories(dtmf_test_sse41   PRIVATE ${DTMF_TEST_INCLUDE_DIRS})
-target_link_directories(dtmf_test_sse41      PRIVATE ${gtest_BINARY_DIR})
+target_link_directories(dtmf_test_sse41      PRIVATE ${googletest_BINARY_DIR})
 target_link_libraries(dtmf_test_sse41        PRIVATE ${DTMF_TEST_LINK_LIBRARIES})
 
 # ******************************************************************************
@@ -118,7 +119,7 @@ target_compile_options(dtmf_test_sse2
 )
 
 target_include_directories(dtmf_test_sse2   PRIVATE ${DTMF_TEST_INCLUDE_DIRS})
-target_link_directories(dtmf_test_sse2      PRIVATE ${gtest_BINARY_DIR})
+target_link_directories(dtmf_test_sse2      PRIVATE ${googletest_BINARY_DIR})
 target_link_libraries(dtmf_test_sse2        PRIVATE ${DTMF_TEST_LINK_LIBRARIES})
 
 # ******************************************************************************
@@ -131,7 +132,7 @@ target_compile_options(dtmf_test_no_simd
 )
 
 target_include_directories(dtmf_test_no_simd   PRIVATE ${DTMF_TEST_INCLUDE_DIRS})
-target_link_directories(dtmf_test_no_simd      PRIVATE ${gtest_BINARY_DIR})
+target_link_directories(dtmf_test_no_simd      PRIVATE ${googletest_BINARY_DIR})
 target_link_libraries(dtmf_test_no_simd        PRIVATE ${DTMF_TEST_LINK_LIBRARIES})
 
 # ******************************************************************************
@@ -141,7 +142,7 @@ add_executable(dtmf_test_whitenoise
 )
 
 target_include_directories(dtmf_test_whitenoise    PRIVATE ${DTMF_TEST_INCLUDE_DIRS})
-target_link_directories(dtmf_test_whitenoise       PRIVATE ${gtest_BINARY_DIR})
+target_link_directories(dtmf_test_whitenoise       PRIVATE ${googletest_BINARY_DIR})
 target_link_libraries(dtmf_test_whitenoise         PRIVATE ${DTMF_TEST_LINK_LIBRARIES})
 
 # ******************************************************************************

@@ -2,7 +2,7 @@ DTMF-Decoder library.
 
 Single include file DTMF decoding library for x86 computers.
 
-This librarey provides stable and dependable DTMF detection for embedded applications.  Requires c++71+.
+This library provides stable and dependable DTMF detection for embedded applications.  Requires c++71+.
 
 Features:
     - Sensitivity: -27dB
@@ -26,3 +26,38 @@ License:
 
     MIT Licence.  Free to usee in commercial projects.
 
+Usage:
+
+<code>
+struct channel
+{
+	tika::dtmf_decoder dtmf_filter_;
+	// ...
+
+	void on_key_down(char key) {
+		// key was pressed
+		// process key...
+	}
+
+    void on_key_up(char key) {
+		// key was released
+		// process key...
+	}
+
+    void setup() {
+		// connect to key events	
+        dtmf_filter_.on_key_down([this](char key) { this->on_dtmf_key_down(key); });
+		dtmf_filter_.on_key_up([this](char key) { this->on_dtmf_key_up(key); });
+		// ...
+	}
+
+	// this function is called when audio data is available.  Audio samples can be 
+	// either uncompressed PCM 16-bit signed integers or 32 bit floats.
+	void on_audio_data(size_t sample_count, const uint16_t* samples) {
+		// feed audio data to the filter
+		dtmf_filter_(sample_count, samples);
+		// do other processing...
+	}
+	// ...
+};
+</code>
